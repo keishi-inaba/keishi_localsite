@@ -1,0 +1,400 @@
+//オープンボタン
+
+#openbtn {
+  position: fixed;
+  background: transparent;
+  cursor: pointer;
+  top: 5%;
+  right: 5%;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin: 5px auto 0 auto;
+  z-index: 99999;
+  box-shadow: 3px 3px 5px #555;
+  display: none;
+
+  
+
+  & .open-btn-area {
+    transition: all .6s;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+
+    & span {
+      transition: all .4s;
+      position: absolute;
+      left: 13px;
+      height: 3px;
+      background: #333;
+      width: 50%;
+
+      &:nth-of-type(1) {
+        top: 12px;
+      }
+
+      &:nth-of-type(2) {
+        top: 23px;
+      }
+
+      &:nth-of-type(3) {
+        top: 34px;
+      }
+    }
+  }
+}
+
+
+//.activeクラス付与後
+
+#openbtn.active .open-btn-area {
+  transform: rotate(360deg);
+}
+
+#openbtn.active span:nth-of-type(1) {
+  top: 18px;
+  left: 18px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 30%;
+}
+
+#openbtn.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+#openbtn.active span:nth-of-type(3) {
+  top: 30px;
+  left: 18px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 30%;
+}
+
+
+//click時のメニュー
+
+#g-navi.panel .g-navi-list {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+#g-navi ul {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.g-navi-list ul {
+  text-align: center;
+
+  & li a {
+    display: block;
+    padding: 20px;
+    color: #333;
+    font-size: 1.8rem;
+  }
+}
+
+#g-navi {
+  position: fixed;
+  z-index: 9999;
+  top: -120%;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #eee;
+  transition: all .6s;
+
+  &.panel {
+    top: 0;
+  }
+}
+
+
+//スクロールダウン
+
+.scroll {
+  position: relative;
+}
+
+.scrolldown {
+  position: absolute;
+  top: 1%;
+  right: 7%;
+  z-index: 10;
+  animation: arrowmove 1s ease-in-out infinite;
+
+  & span {
+    position: absolute;
+    left: -30px;
+    bottom: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    writing-mode: vertical-rl;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -8px;
+    width: 1px;
+    height: 30px;
+    background: #fff;
+    transform: skewX(-31deg);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    height: 60px;
+    background: #fff;
+  }
+}
+
+@keyframes arrowmove {
+  0% {
+    bottom: 1%;
+  }
+  50% {
+    bottom: 3%;
+  }
+  100% {
+    bottom: 1%;
+  }
+}
+
+//ページトップ
+
+#page-top {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+  width: 50px;
+  height: 50px;
+  background: #eee;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #333;
+  opacity: 0;
+  transform: translateY(100px);
+
+  & a {
+    font-size: 1.5rem;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  &.UpMove {
+    animation: UpAnime 0.5s forwards;
+  }
+
+  &.DownMove {
+    animation: DownAnime 0.5s forwards;
+  }
+}
+
+
+@keyframes UpAnime {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes DownAnime {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
+
+//ニュースティッカー
+
+.news {
+  position: relative;
+  padding: 3%;
+
+  &::after {
+    content: "";
+    width: 2px;
+    height: 50px;
+    background: #fff;
+    position: absolute;
+    top: 3%;
+    left: 2%;
+  }
+
+  & h2 {
+    margin-bottom: 20px;
+  }
+}
+
+.slider a {
+  display: block;
+  background: #eee;
+  padding: 20px;
+  font-size: 1.5rem;
+}
+
+.slider span {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin: 8px 0;
+  color: #777;
+  display: block;
+}
+
+.slider {
+  margin-bottom: 50px;
+  
+  & li {
+    border-radius: 30px;
+  }
+}
+
+
+
+//文字がじわっと出現
+
+.blur {
+  animation: blurAnime 1s forwards;
+}
+
+.blurTrigger {
+  opacity: 0;
+}
+
+@keyframes blurAnime {
+  from {
+    filter: blur(10px);
+    transform: scale(1.02) translateY(200px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+
+//流れるテキスト
+
+.slide-in {
+  overflow: hidden;
+}
+
+.slide-in-inner {
+  display: inline-block;
+}
+
+
+.leftAnimeLeftRight {
+  animation: slideTextX100 1s forwards;
+  opacity: 0;
+}
+
+@keyframes slideTextX100 {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slideAnimeRightLeft {
+  animation: slideTextX-100 1s forwards;
+  opacity: 0;
+}
+
+@keyframes slideTextX-100 {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+//波紋
+
+.circle span.mask {
+  position: relative;
+  display: block;
+  line-height: 0;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    content: "";
+    transform: scale(0);
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  &:hover::before {
+    animation: circle 0.75s;
+  }
+}
+
+@keyframes circle {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+  }
+}
+
+
+
+//フェードアップ
+
+.fadeUpTrigger {
+  opacity: 0;
+}
+
+.fadeUp {
+  animation: fadeUpA 2s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUpA {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
